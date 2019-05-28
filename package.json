@@ -1,0 +1,19 @@
+{
+  "name": "eznashdb",
+  "version": "1.0.0",
+  "description": "A crowdsourced database of shuls around the world",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "set NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AriAbr/ezrat-nashim-database.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AriAbr/ezrat-nashim-database/issues"
+  },
+  "homepage": "https://github.com/AriAbr/ezrat-nashim-database#readme"
+}
