@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ./partials/head.ejs %>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <% include ./partials/navbar.ejs %>
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <% include ./partials/messages.ejs %>
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron my-4">
+          <h1 class="display-3">Welcome to the Ezrat Nashim Database</h1>
+          <p class="lead">A crowdsourced database of shuls around the world.</p>
+          <a href="#" class="btn btn-primary btn-lg"><span class="fas fa-search"></span> Search</a>
+          <a href="#" class="btn btn-primary btn-lg"><span class="fas fa-plus"></span> Add a Shul</a>
+        </header>
+
+      </main>
+      <!-- /.container -->
+      <% include ./partials/baseScripts.ejs %>
+
+    </body>
+</html>
