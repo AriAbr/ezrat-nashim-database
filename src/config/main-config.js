@@ -24,7 +24,7 @@ module.exports = {
       cookie: {maxAge: 1.21e+9} // set cookie to espire in 14 days
     }));
     app.use(flash());
-    // passportConfig.init(app);
+    passportConfig.init(app);
 
     app.use((req, res, next) => {
       res.locals.currentUser = req.user;
