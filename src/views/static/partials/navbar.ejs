@@ -26,16 +26,30 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><small><i class="fa fa-user-plus" aria-hidden="true"></i></small> Sign up
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
+
+        <!-- Authentication -->
+        <% if(currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_up"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_in"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        <% }%>
+
+
+
+
         <li class="nav-item">
           <a class="nav-link" href="#"><span class="fas fa-globe"></span> עברית
             <span class="sr-only">(current)</span>
