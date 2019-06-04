@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/"><span class="fas fa-home"></span> Home
+          <a class="nav-link" href="/"><i class="fas fa-home"></i> Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -17,12 +17,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><span class="fas fa-search"></span> Search
+          <a class="nav-link" href="/shuls"><i class="fas fa-search"></i> Search
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><span class="fas fa-plus"></span> Add a Shul
+          <a class="nav-link" href="/shuls/new/select_city"><i class="fas fa-plus"></i> Add a Shul
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -30,28 +30,28 @@
         <!-- Authentication -->
         <% if(currentUser) { %>
           <li class="nav-item">
-            <a class="nav-link" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+            <a class="nav-link" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i> Sign out
               <span class="sr-only">(current)</span>
             </a>
           </li>
         <% } else { %>
           <li class="nav-item">
-            <a class="nav-link" href="/users/sign_up"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up
+            <a class="nav-link" href="/users/sign_up"><i class="fas fa-user-plus"></i> Sign up
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users/sign_in"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in
+            <a class="nav-link" href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Sign in
               <span class="sr-only">(current)</span>
             </a>
           </li>
-        <% }%>
+        <% } %>
 
 
 
 
         <li class="nav-item">
-          <a class="nav-link" href="#"><span class="fas fa-globe"></span> עברית
+          <a class="nav-link" href="#"><i class="fas fa-globe"></i> עברית
             <span class="sr-only">(current)</span>
           </a>
         </li>
