@@ -37,3 +37,32 @@ body{
 .navbar{
   background-color: #323232;
 }
+.buffer{
+  height: 60px;
+}
+.btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+.table > tbody > tr:first-child > td {
+  border: none;
+}
+.checked {
+  color: orange;
+}
+.stars {
+  white-space: nowrap;
+}
+
+.stars > i {
+  display: inline-block;
+}
+.table-plain tbody tr,
+.table-plain tbody tr:hover,
+.table-plain tbody td {
+  background-color:transparent;
+  border:none;
+  padding: 0;
+}

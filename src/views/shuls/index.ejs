@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <% include ../static/partials/navbar.ejs %>
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <% include ../static/partials/messages.ejs %>
+
+          <!-- <h1>Shuls</h1> -->
+
+          <div>
+            <div class="row">
+              <div class="col-lg-8">
+                <h1>Shuls</h1>
+              </div>
+              <div class="col-lg-4 col text-right align-self-center">
+                <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Icon Glossary <i class="fas fa-caret-down"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- glossary -->
+
+
+          <div class="collapse" id="collapseExample" style="margin-top: 8px">
+
+          <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+
+              <small>
+                <table class="table table-sm table-borderless table-plain" style="border-color: transparent">
+                  <thead>
+                    <th colspan="2">Sizes (realtive to men's section):</th>
+                    <th colspan="2">Kaddish:</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>XS</b></td>
+                      <td>Much smaller</td>
+                      <td class="stars">
+                        <i class="fa fa-check" style="vertical-align: middle;"></i>
+                      </td>
+                      <td>
+                        Women can say kaddish
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>S</b></td>
+                      <td>Somewhat smaller</td>
+                      <td class="stars">
+                        <i class="fa fa-check" style="vertical-align: middle;"></i> <small> <small><small><i class="fa fa-minus"></i> </small></small><i class="fa fa-male"></i></small>
+                      </td>
+                      <td>
+                        Women can say kaddish without men
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>M</b></td>
+                      <td>Same size</td>
+                      <td class="stars">
+                        <i class="fa fa-check" style="vertical-align: middle;"></i> <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i></small>
+                      </td>
+                      <td>
+                        Women can say kaddish with men
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>L</b></td>
+                      <td>Larger</td>
+                      <td>
+                        <i class="fa fa-check" style="vertical-align: middle;"></i> <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i><small style="vertical-align: super;"><small style="vertical-align: super;"><small> <i class="fa fa-star-of-life"></i></small></small></small></small>
+                      </td>
+                      <td>
+                        A man always says kaddish; women can join
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </small>
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- shuls -->
+
+
+        <div class="table-responsive">
+          <div id="sample2">
+            <table style="width:100%" class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="3">General Info</th>
+                  <th scope="col" colspan="5">Women's Section Details</th>
+                  <th scope="col" colspan="3">Other Info</th>
+                </tr>
+                <tr class="thead-dark">
+                  <th scope="col"><small>Name</small></th>
+                  <th scope="col"><small>Location</small></th>
+                  <th scope="col"><small>Nussach</small></th>
+                  <th scope="col"><small>Room Name</small></th>
+                  <th scope="col"><small>Layout</small></th>
+                  <th scope="col"><small>Size</small></th>
+                  <th scope="col" colspan="2"><small>Audibility/Visibility</small></th>
+                  <th scope="col"><small>Fem. Ldshp.</small></th>
+                  <th scope="col"><small>Kaddish</small></th>
+                  <th scope="col"><small>Childcare</small></th>
+                </tr>
+              </thead>
+              <% shuls.forEach((shul) => { %>
+                <tr class="table-secondary">
+                  <td><b><%= shul.name %></b></td>
+                  <% var shulCity = "" %>
+                  <% if(shul.cityId === 1){ %>
+                    <% shulCity = "Bergenfield, NJ, USA" %>
+                  <% } else if (shul.cityId === 2){ %>
+                    <% shulCity = "Teaneck, NJ, USA" %>
+                  <% } %>
+                  <td><%= shulCity %></td>
+                  <td><%= shul.nussach %></td>
+                  <td colspan="5"></td>
+                  <td>
+                    <% if(shul.femaleLeadership === 1){ %>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    <% } else if (shul.femaleLeadership === 2){ %>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    <% } else if (shul.femaleLeadership === 3){ %>
+                      <i class="fa fa-question" aria-hidden="true"></i>
+                    <% } %>
+                  </td>
+                  <td>
+                    <% if(shul.kaddishGeneral === 1){ %>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <% if(shul.kaddishAlone === 1){ %>
+                        <small> <small><small><i class="fa fa-minus"></i> </small></small><i class="fa fa-male"></i></small>
+                      <% } else if (shul.kaddishAlone === 2){ %>
+                        <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i></small>
+                      <% } else if (shul.kaddishAlone === 3){ %>
+                        <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i><small style="vertical-align: super;"><small style="vertical-align: super;"><small> <i class="fa fa-star-of-life"></i></small></small></small></small>
+                      <% } else if (shul.kaddishAlone === 4){ %>
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                      <% } %>
+                    <% } else if (shul.kaddishGeneral === 2){ %>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    <% } else if (shul.kaddishGeneral === 3){ %>
+                      <i class="fa fa-question" aria-hidden="true"></i>
+                    <% } %>
+                  </td>
+                  <td>
+                    <% if(shul.childcare === 1){ %>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    <% } else if (shul.childcare === 2){ %>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    <% } else if (shul.childcare === 3){ %>
+                      <i class="fa fa-question" aria-hidden="true"></i>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </table>
+          </div>
+
+        </div>
+
+      </main>
+      <!-- /.container -->
+      <% include ../static/partials/baseScripts.ejs %>
+
+    </body>
+</html>

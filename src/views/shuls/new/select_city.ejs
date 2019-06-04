@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <% include ../../static/partials/navbar.ejs %>
+
+    <!-- Page Content -->
+    <main class="container">
+
+      <% include ../../static/partials/messages.ejs %>
+
+        <h1>Add a Shul</h1>
+        <hr>
+
+
+
+        <form action="/shuls/new/shul_details" method="get"  style="width: 85%">
+
+
+          <div id="general-info-questions" style="width: 100%">
+
+            <h2>General Info</h2>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h4>Select a City:</h4>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="country">Country</label>
+                      <select class="form-control" id="country" style="width: 250px">
+                        <option>---Select---</option>
+                        <option>USA</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="stateRegion">State / Region</label>
+                      <select class="form-control" id="stateRegion" style="width: 250px">
+                        <option>---Select---</option>
+                        <option>NJ</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <select class="form-control" name="city" id="city" style="width: 250px">
+                        <option>---Select---</option>
+                        <option value="1">Bergenfield</option>
+                        <option value="2">Teaneck</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <button type="submit" class="btn btn-primary" style="margin-top: 16px; width: 250px">Continue</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </main>
+      <!-- /.container -->
+      <% include ../../static/partials/baseScripts.ejs %>
+
+    </body>
+</html>

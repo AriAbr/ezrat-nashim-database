@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <% include ../../static/partials/navbar.ejs %>
+
+    <!-- Page Content -->
+    <main class="container">
+
+      <% include ../../static/partials/messages.ejs %>
+
+      <h1>Add a Shul</h1>
+      <hr>
+
+
+      <form action="/shuls/create" method="post"  style="width: 85%">
+
+        <div id="general-info-questions" style="width: 100%">
+
+          <h2>General Info</h2>
+          <ul class="list-group">
+            <li class="list-group-item">
+
+              <div id="location" style="width: 100%">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <label>City:
+                      <% if(cityId === 1) { %>
+                        Bergnefield, NJ, USA
+                      <% } else if (cityId === 2) { %>
+                        Teaneck, NJ, USA
+                      <% } %>
+                    </label>
+                    <input type="text" value=<%= cityId %> name="cityId" aria-describedby="titleHelp" hidden>
+                  </div>
+
+                  <div class="col-lg-4 col text-right">
+                    <a class="btn btn-warning btn-sm" href="/shuls/new/select_city" style="margin-left: 20px">Change City</a>
+                  </div>
+                </div>
+
+              </div>
+              <hr>
+              <div class="row">
+                <div class="form-group col-lg-4">
+                  <label for="name">Shul Name</label>
+                  <input type="text" class="form-control" name="name" aria-describedby="titleHelp" placeholder="Enter Shul Name" style="width: 250px">
+                    <small>Shul Name must be at least 2 characters</small>
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="nussach">Nussach</label>
+                  <input type="text" class="form-control" name="nussach" aria-describedby="titleHelp" placeholder="Enter Nussach" style="width: 250px">
+                    <small>Nussach must be at least 2 characters</small>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+
+        </div>
+
+
+        <!-- <div id="ezrat-nashim-questions" style="width: 100%">
+          <h2>Women's Section(s)</h2>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="room-1">
+
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h4>Room 1</h4>
+                  </div>
+                  <div class="col-lg-4 col text-right">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete Room</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="title">Room Name (e.g. Main Shul)</label>
+                      <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter name" style="width: 250px">
+                        <small>Room name must be at least 1 character</small>
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label for="size">Women's section size (relative to men's)</label>
+                      <select class="form-control" id="size-select" style="width: 250px">
+                        <option>---Select---</option>
+                        <option>XS - Much smaller</option>
+                        <option>S - Somewhat smaller</option>
+                        <option>M - Same size</option>
+                        <option>L - Larger</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="aud-vis">How easy or difficult is it to see and hear from the women's section?</label>
+                  <select class="form-control" id="aud-vis" style="width: 250px">
+                    <option>---Select---</option>
+                    <option>1 - Very difficult</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 - Very easy</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="size">Where is the women's section? (check all that apply):</label>
+                  <table style="width:100%" class="table table-sm table-responsive-sm">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="question-text"><b>Same floor as men's section</b></div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-centered">
+                            <label class="custom-control-label" for="same-floor-centered">
+                              Centered Mechitza
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-side">
+                            <label class="custom-control-label" for="same-floor-side">
+                              Side
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-back">
+                            <label class="custom-control-label" for="same-floor-back">
+                              Back
+                            </label>
+                          </div>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="question-text"><b>Slightly Elevated</b></div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="elevated-center">
+                            <label class="custom-control-label" for="elevated-center">
+                              Centered Mechitza
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="elevated-side">
+                            <label class="custom-control-label" for="elevated-side">
+                              Side
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="elevated-back">
+                            <label class="custom-control-label" for="elevated-back">
+                              Back
+                            </label>
+                          </div>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="question-text"><b>Balcony</b></div>
+                        </td>
+                        <td></td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="balcony-side">
+                            <label class="custom-control-label" for="balcony-side">
+                              Side
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="balcony-back">
+                            <label class="custom-control-label" for="balcony-back">
+                              Back
+                            </label>
+                          </div>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="question-text"><b>No women's section</b></div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="no-womens-section">
+                            <label class="custom-control-label" for="no-womens-section">
+                              There is no women's section
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="row">
+            <div class="col-lg-12 col text-right">
+              <button type="submit" class="btn btn-success btn-sm" style="margin-top: 16px; margin-right: 20px">Add Room</button>
+            </div>
+          </div>
+        </div> -->
+
+        <div id="yes-no-questions" style="width: 100%">
+          <h2>Additional Info</h2>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <table style="width:100%" class="table table-sm table-responsive-sm">
+                <tbody>
+                  <div class="form-group">
+                    <tr>
+                      <td style="">
+                        <div class="question-text"><b>Childcare:</b> Is there an on-site childcare program?</div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-yes" value="1">
+                          <label class="custom-control-label" for="childcare-yes">Yes</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-no" value="2">
+                          <label class="custom-control-label" for="childcare-no">No</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-unsure" value="3">
+                          <label class="custom-control-label" for="childcare-unsure">Unsure</label>
+                        </div>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </div>
+                  <div class="form-group">
+                    <tr>
+                      <td>
+                        <div class="question-text"><b>Female Leadership:</b> Are there any women in leadership positions?</div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-yes" value="1">
+                          <label class="custom-control-label" for="leadership-yes">Yes</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-no" value="2">
+                          <label class="custom-control-label" for="leadership-no">No</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-unsure" value="3">
+                          <label class="custom-control-label" for="leadership-unsure">Unsure</label>
+                        </div>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </div>
+                  <div class="form-group">
+                    <tr>
+                      <td>
+                        <div class="question-text"><b>Kaddish:</b> Can women say kaddish?</div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-yes" value="1">
+                          <label class="custom-control-label" for="kaddish-yes">Yes</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-no" value="2">
+                          <label class="custom-control-label" for="kaddish-no">No</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-unsure" value="3">
+                          <label class="custom-control-label" for="kaddish-unsure">Unsure</label>
+                        </div>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </div>
+                  <div class="form-group">
+                    <tr>
+                      <td rowspan="2">
+                        <div class="question-text"><b>Kaddish:</b> Can women say kaddish if no man is saying it?</div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone" value="1">
+                          <label class="custom-control-label" for="kaddish-alone">Yes</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-with-man" value="2">
+                          <label class="custom-control-label" for="kaddish-with-man">No</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-na" value="3">
+                          <label class="custom-control-label" for="kaddish-alone-na">A man always says kaddish</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-unsure" value="4">
+                          <label class="custom-control-label" for="kaddish-alone-unsure">Unsure</label>
+                        </div>
+                      </td>
+                    </tr>
+                  </div>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <button type="submit" class="btn btn-primary" style="margin-top: 16px; width: 250px">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div class="buffer"></div>
+      </main>
+      <!-- /.container -->
+      <% include ../../static/partials/baseScripts.ejs %>
+
+    </body>
+</html>
