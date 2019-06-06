@@ -25,7 +25,7 @@ module.exports = {
       var roomNames = {};
       for (var key in req.body) {
         if(key.includes("roomName_")){
-          req.checkBody(key, "must be unique. Make sure that all of your room names are unique").not().isIn(Object.keys(roomNames));
+          req.checkBody(key, "must be unique. Make sure that none of your room names are repeated").not().isIn(Object.keys(roomNames));
           roomNames[req.body[key]] = true;
         }
       }
