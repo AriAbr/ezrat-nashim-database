@@ -37,6 +37,10 @@ module.exports = {
         res.redirect("/users/sign_in");
       } else {
         req.flash("notice", "You've successfully signed in!");
+        // console.log((req.headers.cookie));
+        // console.log(JSON.parse(`{${req.headers.cookie}}`));
+        //if header - redirect there
+        //else --
         res.redirect("/")
       }
     })

@@ -15,18 +15,26 @@
 
           <!-- <h1>Shuls</h1> -->
 
-          <div>
-            <div class="row">
-              <div class="col-lg-8">
-                <h1>Shuls</h1>
-              </div>
-              <div class="col-lg-4 col text-right align-self-center">
-                <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                  Icon Glossary <i class="fas fa-caret-down"></i>
+            <h1>Shuls</h1>
+            <hr>
+            <!-- <div class="row">
+
+              <div class="col-lg-12 col text-center align-self-center">
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="width: 40%; margin-bottom: 10px; color: #ddfcff">
+                  <div class="row">
+                    <div class="col-lg-4 align-center">
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <div class="col-lg-4 align-center">
+                      <b>Icon Glossary</b>
+                    </div>
+                    <div class="col-lg-4 align-center">
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                  </div>
                 </button>
               </div>
-            </div>
-          </div>
+            </div> -->
 
 
           <!-- glossary -->
@@ -95,27 +103,27 @@
 
         <!-- shuls -->
 
-
         <div class="table-responsive">
           <div id="sample2">
             <table style="width:100%" class="table table-sm table-bordered">
               <thead>
                 <tr>
                   <th scope="col" colspan="3">General Info</th>
-                  <th scope="col" colspan="5">Women's Section Details</th>
+                  <th scope="col" colspan="4">Women's Section Details</th>
                   <th scope="col" colspan="3">Other Info</th>
                 </tr>
                 <tr class="thead-dark">
-                  <th scope="col"><small>Name</small></th>
-                  <th scope="col"><small>Location</small></th>
-                  <th scope="col"><small>Nussach</small></th>
-                  <th scope="col"><small>Room Name</small></th>
-                  <th scope="col"><small>Layout</small></th>
-                  <th scope="col"><small>Size</small></th>
-                  <th scope="col" colspan="2"><small>Audibility/Visibility</small></th>
-                  <th scope="col"><small>Fem. Ldshp.</small></th>
-                  <th scope="col"><small>Kaddish</small></th>
-                  <th scope="col"><small>Childcare</small></th>
+
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Shul's name"><b>Name</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Shul's city"><b>City</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Shul's nussach"><b>Nussach</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Name of each room in the shul"><b>Room Name</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Location of women's section in each room"><b>Layout</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Size of women's section in each room (relative to men's section)"><b>Size</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="How easy it is to see and hear from the women's section"><b>Visibility/Audibility</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Are there any women in leadership positions"><b>Fem Ldshp</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Can women say kaddish"><b>Kaddish</b></small></th>
+                  <th scope="col"><small data-toggle="tooltip" data-placement="bottom" title="Is there an on-site childcare program"><b>Childcare</b></small></th>
                 </tr>
               </thead>
               <% shuls.forEach((shul) => { %>
@@ -129,44 +137,285 @@
                   <% } %>
                   <td><%= shulCity %></td>
                   <td><%= shul.nussach %></td>
-                  <td colspan="5"></td>
+                  <td colspan="4"></td>
                   <td>
                     <% if(shul.femaleLeadership === 1){ %>
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <i class="fa fa-check" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="There is at least one woman in a leadership postion"></i>
                     <% } else if (shul.femaleLeadership === 2){ %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="There are no women in leadership positions"></i>
                     <% } else if (shul.femaleLeadership === 3){ %>
-                      <i class="fa fa-question" aria-hidden="true"></i>
+                      <small><i class="fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Unknown if there are any women in leadership positions"></i></small>
                     <% } %>
                   </td>
                   <td>
                     <% if(shul.kaddishGeneral === 1){ %>
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <i class="fa fa-check" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Women can say kaddish"></i>
                       <% if(shul.kaddishAlone === 1){ %>
-                        <small> <small><small><i class="fa fa-minus"></i> </small></small><i class="fa fa-male"></i></small>
+                        <small data-toggle="tooltip" data-placement="bottom" title="Women can say kaddish alone (without men)"> <small><small><i class="fa fa-minus"></i> </small></small><i class="fa fa-male"></i></small>
                       <% } else if (shul.kaddishAlone === 2){ %>
-                        <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i></small>
+                        <small data-toggle="tooltip" data-placement="bottom" title="Women can say kaddish with men"> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i></small>
                       <% } else if (shul.kaddishAlone === 3){ %>
-                        <small> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i><small style="vertical-align: super;"><small style="vertical-align: super;"><small> <i class="fa fa-star-of-life"></i></small></small></small></small>
+                        <small data-toggle="tooltip" data-placement="bottom" title="A man always says kaddish"> <small><small><i class="fa fa-plus"></i> </small></small><i class="fa fa-male"></i><small style="vertical-align: super;"><small style="vertical-align: super;"><small> <i class="fa fa-star-of-life"></i></small></small></small></small >
                       <% } else if (shul.kaddishAlone === 4){ %>
-                        <i class="fa fa-question" aria-hidden="true"></i>
+                        <small data-toggle="tooltip" data-placement="bottom" title="Unknown if women can say kaddish without men"><i class="fa fa-question" aria-hidden="true"></i></small>
+
                       <% } %>
                     <% } else if (shul.kaddishGeneral === 2){ %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Women cannot say kaddish"></i>
                     <% } else if (shul.kaddishGeneral === 3){ %>
-                      <i class="fa fa-question" aria-hidden="true"></i>
+                      <small data-toggle="tooltip" data-placement="bottom" title="Unknown if women can say kaddish"><i class="fa fa-question" aria-hidden="true"></i></small>
                     <% } %>
                   </td>
                   <td>
                     <% if(shul.childcare === 1){ %>
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <i class="fa fa-check" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="There is an on-site childcare program"></i>
                     <% } else if (shul.childcare === 2){ %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="There is no on-site childcare program"></i>
                     <% } else if (shul.childcare === 3){ %>
-                      <i class="fa fa-question" aria-hidden="true"></i>
+                      <small><i class="fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Unknown if there is an on-site childcare program"></i></small>
                     <% } %>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="3" rowspan="<%= shul.rooms.length %>">
+                    <button type="button" class="btn btn-outline-primary btn-xs">
+                      <small><i class="fa fa-edit" aria-hidden="true"></i> Edit Shul / Room</small>
+                    </button>
+                  </td>
+                  <td><small><b><%= shul.rooms[0].roomName %></b></small></td>
+                  <td style="vertical-align: middle">
+                    <small style="padding:0">
+
+
+                      <% var sameFloorStr = ""; %>
+                      <% var elevatedStr = ""; %>
+                      <% var balconyStr = ""; %>
+                      <% if (shul.rooms[0].sameFloorSide) { %>
+                        <% sameFloorStr = sameFloorStr.concat("Side, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].sameFloorBack) { %>
+                        <% sameFloorStr = sameFloorStr.concat("Back, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].sameFloorCentered) { %>
+                        <% sameFloorStr = sameFloorStr.concat("Centered, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].elevatedSide) { %>
+                        <% elevatedStr = elevatedStr.concat("Side, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].elevatedBack) { %>
+                        <% elevatedStr = elevatedStr.concat("Back, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].elevatedCentered) { %>
+                        <% elevatedStr = elevatedStr.concat("Centered, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].balconySide) { %>
+                        <% balconyStr = balconyStr.concat("Side, ") %>
+                      <% } %>
+                      <% if (shul.rooms[0].balconyBack) { %>
+                        <% balconyStr = balconyStr.concat("Back, ") %>
+                      <% } %>
+
+
+                      <% if(sameFloorStr.length > 0) { %>
+                        <div class="row">
+                          <div class="col-lg-5" style="padding-right:0"><b>Same Floor:</b></div>
+                          <div class="col-lg-7"><%= sameFloorStr.slice(0, sameFloorStr.length-2) %></div>
+                        </div>
+                        <% if(elevatedStr.length > 0 || balconyStr.length > 0 || shul.rooms[0].noWomenSection){ %>
+                          <hr style="margin:0">
+                        <% } %>
+                      <% } %>
+                      <% if(elevatedStr.length > 0) { %>
+                        <div class="row">
+                          <div class="col-lg-5" style="padding-right:0"><b>Elevated:</b></div>
+                          <div class="col-lg-7"><%= elevatedStr.slice(0, elevatedStr.length-2) %></div>
+                        </div>
+                        <% if(balconyStr.length > 0 || shul.rooms[0].noWomenSection){ %>
+                          <hr style="margin:0">
+                        <% } %>
+                      <% } %>
+                      <% if(balconyStr.length > 0) { %>
+                        <div class="row">
+                          <div class="col-lg-5" style="padding-right:0"><b>Balcony:</b></div>
+                          <div class="col-lg-7"><%= balconyStr.slice(0, balconyStr.length-2) %></div>
+                        </div>
+                        <% if(shul.rooms[0].noWomenSection){ %>
+                          <hr style="margin:0">
+                        <% } %>
+                      <% } %>
+                      <% if(shul.rooms[0].noWomenSection) { %>
+                        <div class="row">
+                          <div class="col-lg-5" style="padding-right:0"><b>No wom. sec.</b></div>
+                          <div class="col-lg-7">--</div>
+                        </div>
+                      <% } %>
+                    </small>
+                  </td>
+                  <td>
+                    <small>
+                      <% if(shul.rooms[0].size === 1) { %>
+                        <b data-toggle="tooltip" data-placement="bottom" title="Much smaller than men's section">XS</b>
+                      <% } %>
+                      <% if(shul.rooms[0].size === 2) { %>
+                        <b data-toggle="tooltip" data-placement="bottom" title="Somewhat smaller than men's section">S</b>
+                      <% } %>
+                      <% if(shul.rooms[0].size === 3) { %>
+                        <b data-toggle="tooltip" data-placement="bottom" title="Same size as men's section">M</b>
+                      <% } %>
+                      <% if(shul.rooms[0].size === 4) { %>
+                        <b data-toggle="tooltip" data-placement="bottom" title="Larger than men's section">L</b>
+                      <% } %>
+                    </small>
+                  </td>
+                  <td style="border-right-style: none;">
+
+                    <small>
+                      <small class="stars">
+                        <div class="row">
+                          <div class="col-lg-5" style="padding-right:0">
+                            <% if(shul.rooms[0].avgAudVisRating === 0) { %>
+                              --
+                            <% } else { %>
+                              <% for(let i = 0; i <= shul.rooms[0].avgAudVisRating-1; i++) { %>
+                                <i class="fa fa-star checked" aria-hidden="true"></i>
+                              <% } %>
+                              <% for(let i = 5; i > shul.rooms[0].avgAudVisRating; i--) { %>
+                                <i class="far fa-star checked"></i>
+                                <!-- <i class="fa fa-star-o unchecked" aria-hidden="true"></i> -->
+                              <% } %>
+                            <% } %>
+                          </div>
+                          <div class="col-lg-7 align-right">
+                            <button type="button" class="btn btn-outline-primary btn-outline btn-xs">
+                              <small>  <i class="fa fa-star" aria-hidden="true"></i> Add Rating</small>
+                            </button>
+                          </div>
+                        </div>
+
+
+
+                      </small>
+                    </small>
+                  </td>
+                  <td colspan="3" rowspan="<%= shul.rooms.length %>"></td>
+                </tr>
+
+                <% for (let i = 1; i < shul.rooms.length; i++){ %>
+                  <% var currRoom = shul.rooms[i] %>
+                  <tr>
+                    <td><small><b><%= currRoom.roomName %></b></small></td>
+                    <td style="vertical-align: middle">
+                      <small style="padding:0">
+
+
+                        <% var sameFloorStr = ""; %>
+                        <% var elevatedStr = ""; %>
+                        <% var balconyStr = ""; %>
+                        <% if (currRoom.sameFloorSide) { %>
+                          <% sameFloorStr = sameFloorStr.concat("Side, ") %>
+                        <% } %>
+                        <% if (currRoom.sameFloorBack) { %>
+                          <% sameFloorStr = sameFloorStr.concat("Back, ") %>
+                        <% } %>
+                        <% if (currRoom.sameFloorCentered) { %>
+                          <% sameFloorStr = sameFloorStr.concat("Centered, ") %>
+                        <% } %>
+                        <% if (currRoom.elevatedSide) { %>
+                          <% elevatedStr = elevatedStr.concat("Side, ") %>
+                        <% } %>
+                        <% if (currRoom.elevatedBack) { %>
+                          <% elevatedStr = elevatedStr.concat("Back, ") %>
+                        <% } %>
+                        <% if (currRoom.elevatedCentered) { %>
+                          <% elevatedStr = elevatedStr.concat("Centered, ") %>
+                        <% } %>
+                        <% if (currRoom.balconySide) { %>
+                          <% balconyStr = balconyStr.concat("Side, ") %>
+                        <% } %>
+                        <% if (currRoom.balconyBack) { %>
+                          <% balconyStr = balconyStr.concat("Back, ") %>
+                        <% } %>
+
+
+                        <% if(sameFloorStr.length > 0) { %>
+                          <div class="row">
+                            <div class="col-lg-5" style="padding-right:0"><b>Same Floor:</b></div>
+                            <div class="col-lg-7"><%= sameFloorStr.slice(0, sameFloorStr.length-2) %></div>
+                          </div>
+                          <% if(elevatedStr.length > 0 || balconyStr.length > 0 || currRoom.noWomenSection){ %>
+                            <hr style="margin:0">
+                          <% } %>
+                        <% } %>
+                        <% if(elevatedStr.length > 0) { %>
+                          <div class="row">
+                            <div class="col-lg-5" style="padding-right:0"><b>Elevated:</b></div>
+                            <div class="col-lg-7"><%= elevatedStr.slice(0, elevatedStr.length-2) %></div>
+                          </div>
+                          <% if(balconyStr.length > 0 || currRoom.noWomenSection){ %>
+                            <hr style="margin:0">
+                          <% } %>
+                        <% } %>
+                        <% if(balconyStr.length > 0) { %>
+                          <div class="row">
+                            <div class="col-lg-5" style="padding-right:0"><b>Balcony:</b></div>
+                            <div class="col-lg-7"><%= balconyStr.slice(0, balconyStr.length-2) %></div>
+                          </div>
+                          <% if(currRoom.noWomenSection){ %>
+                            <hr style="margin:0">
+                          <% } %>
+                        <% } %>
+                        <% if(currRoom.noWomenSection) { %>
+                          <div class="row">
+                            <div class="col-lg-5" style="padding-right:0"><b>No wom. sec.</b></div>
+                            <div class="col-lg-7">--</div>
+                          </div>
+                        <% } %>
+                      </small>
+                    </td>
+                    <td>
+                      <small>
+                        <% if(currRoom.size === 1) { %>
+                          <b data-toggle="tooltip" data-placement="bottom" title="Much smaller than men's section">XS</b>
+                        <% } %>
+                        <% if(currRoom.size === 2) { %>
+                          <b data-toggle="tooltip" data-placement="bottom" title="Somewhat smaller than men's section">S</b>
+                        <% } %>
+                        <% if(currRoom.size === 3) { %>
+                          <b data-toggle="tooltip" data-placement="bottom" title="Same size as men's section">M</b>
+                        <% } %>
+                        <% if(currRoom.size === 4) { %>
+                          <b data-toggle="tooltip" data-placement="bottom" title="Larger than men's section">L</b>
+                        <% } %>
+                      </small>
+                    </td>
+                    <td style="border-right-style: none;">
+                      <small>
+                        <small class="stars">
+                          <div class="row">
+                            <div class="col-lg-5" style="padding-right:0">
+                              <% if(currRoom.avgAudVisRating === 0) { %>
+                                --
+                              <% } else { %>
+                                <% for(let i = 0; i <= currRoom.avgAudVisRating-1; i++) { %>
+                                  <i class="fa fa-star checked" aria-hidden="true"></i>
+                                <% } %>
+                                <% for(let i = 5; i > currRoom.avgAudVisRating; i--) { %>
+                                  <i class="far fa-star checked"></i>
+                                  <!-- <i class="fa fa-star-o unchecked" aria-hidden="true"></i> -->
+                                <% } %>
+                              <% } %>
+                            </div>
+                            <div class="col-lg-7 align-right">
+                              <button type="button" class="btn btn-outline-primary btn-outline btn-xs">
+                                <small>  <i class="fa fa-star" aria-hidden="true"></i> Add Rating</small>
+                              </button>
+                            </div>
+                          </div>
+                        </small>
+                      </small>
+                    </td>
+                  </tr>
+                <% } %>
               <% }) %>
             </table>
           </div>
@@ -178,4 +427,9 @@
       <% include ../static/partials/baseScripts.ejs %>
 
     </body>
+    <script type="text/javascript">
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 </html>
