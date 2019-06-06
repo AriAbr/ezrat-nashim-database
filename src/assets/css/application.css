@@ -1,13 +1,51 @@
 body{
   padding-top: 54px;
-  background-color: #fafafa;
+  background-color: #ddfcff;
   padding-top: 54px;
 }
+.list-group-item{
+  background-color: #bcdcff;
+  border-width: 0;
+
+}
+.form-control, .custom-control-label::before{
+  background-color: #d8ebff;
+  border-width: 0;
+}
 .jumbotron {
-  background-color: #273b7b;
+  background-color: #455dad;
   color: #fafafa;
 }
+.btn-warning{
+  background-color: #ffe960;
+  border-width: 0;
+}
+.btn-danger{
+  background-color: #ff5151;
+  border-width: 0;
+}
+.btn-success{
+  background-color: #53b53b;
+  border-width: 0;
+}
+.btn-outline-primary{
+  color: #273b73;
+  border-color: #273b73;
+}
+.btn-outline-primary:hover{
+  background-color: #273b73;
+  border-color: #273b73;
+  color: #d8ebff;
+}
 .btn-primary{
+  background-color: #273b7b;
+  border-width: 0;
+}
+li hr{
+  color: #333dce;
+  background-color: #333dce;
+}
+/* .btn-primary{
   background-color: #b6f3e8;
   color: #323232;
   border-color: #273b7b;
@@ -33,7 +71,7 @@ body{
   box-shadow: 0 0 0 0rem #273b7b;
   background-color: #b6f3e8;
   color: #323232;
-}
+} */
 .navbar{
   background-color: #323232;
 }
@@ -47,10 +85,16 @@ body{
   border-radius: .2rem;
 }
 .table > tbody > tr:first-child > td {
-  border: none;
+  border-top: none;
+  /* border-bottom: none; */
 }
 .checked {
-  color: orange;
+  color: #273b73;
+}
+.unchecked {
+  color: white;
+  border-color: #3b69cc;
+  border-width: 1px
 }
 .stars {
   white-space: nowrap;
@@ -65,4 +109,32 @@ body{
   background-color:transparent;
   border:none;
   padding: 0;
+}
+.vert-horiz-center-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.vert-horiz-center{
+
+}
+.table-bordered td {
+  background-color: #ddfcff;
+  border-color: #cce4ff;
+}
+
+.table-bordered th {
+  background-color: #d8ebff;
+  border-color: #cce4ff;
+
+}
+.table-secondary td{
+  background-color: #bcdcff;
+  border-color: #bacdff
+}
+.table .thead-dark th{
+  background-color: #273b73;
+  border-color: #3a5399;
+  color: #d8ebff;
 }

@@ -20,6 +20,15 @@ module.exports = {
     if(req.method === "POST"){
       req.checkBody("name", "must be at least 2 characters in length").isLength({min: 2});
       req.checkBody("nussach", "must be at least 2 characters in length").isLength({min: 2});
+
+      //check that room names are not duplicated
+      var roomNames = {};
+      for (var key in req.body) {
+        if(key.includes("roomName_")){
+          req.checkBody(key, "must be unique. Make sure that all of your room names are unique").not().isIn(Object.keys(roomNames));
+          roomNames[req.body[key]] = true;
+        }
+      }
     }
 
     const errors = req.validationErrors();

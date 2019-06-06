@@ -1,4 +1,5 @@
 const Shul = require("./models").Shul;
+const Room = require("./models").Room;
 const Authorizer = require("../policies/shul");
 
 module.exports = {
@@ -13,8 +14,8 @@ module.exports = {
       kaddishGeneral: newShul.kaddishGeneral,
       kaddishAlone: newShul.kaddishAlone
     })
-    .then((user) => {
-      callback(null, user);
+    .then((shul) => {
+      callback(null, shul);
     })
     .catch((err) => {
       callback(err);
@@ -22,7 +23,11 @@ module.exports = {
   },
 
   getAllShuls(callback){
-    return Shul.all()
+    return Shul.all({
+      include: [
+        {model: Room, as: "rooms"}
+      ]
+    })
     .then((shuls) => {
       callback(null, shuls);
     })
@@ -30,5 +35,5 @@ module.exports = {
       callback(err);
     })
   },
-  
+
 }

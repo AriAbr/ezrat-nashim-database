@@ -23,19 +23,42 @@ describe("routes : shuls", () => {
 
         Shul.create({
           userId: this.user.id,
-          cityId: 1,
-          name: "Example Shul 1",
-          nussach: "Ashkenaz",
-          childcare: 1,
-          femaleLeadership: 3,
-          kaddishGeneral: 2,
-          kaddishAlone: 4
+          cityId: '1',
+          name: 'Example Shul 1',
+          nussach: 'ashkenaz',
+          childcare: '1',
+          femaleLeadership: '2',
+          kaddishGeneral: '3',
+          kaddishAlone: '1',
+          rooms: [
+            {
+              roomName: 'Beit Midrash',
+              size: '1',
+              audVisRating: '4',
+              sameFloorSide: 'true',
+            },
+            {
+              roomName: 'Main Shul',
+              size: '2',
+              audVisRating: '3',
+              sameFloorSide: 'true',
+            }
+          ]
+        }, {
+          include: {
+            model: Room,
+            as: "rooms"
+          }
         })
         .then((shul) => {
           this.shul = shul;
 
           done();
-        });
+        })
+        .catch((err) => {
+          console.log(err);
+          done();
+        })
       });
     });
   });
@@ -80,48 +103,94 @@ describe("routes : shuls", () => {
     });
 
     // describe("GET /shuls/new/shul_details", () => {
-    //   const options = {
-    //     url: `${base}new/select_city`,
-    //     form: {
-    //       country: "USA",
-    //       stateRegion: "NJ",
-    //       city: "1",
-    //     }
-    //   };
+    //   // const options = {
+    //   //   url: `${base}new/select_city`,
+    //   //   form: {
+    //   //     country: "USA",
+    //   //     stateRegion: "NJ",
+    //   //     city: "1",
+    //   //   }
+    //   // };
+    //   //
+    //   // it("should redirect and pass the chosen location to the next page", (done) => {
+    //   //
+    //   //   request.get(`${base}new/shul_details?city=1`, (err, res, body) => {
+    //   //     expect(res.statusCode).toBe(200);
+    //   //     expect(err).toBeNull();
+    //   //     expect(body).toContain("Add a Shul");
+    //   //     expect(body).toContain("Bergenfield");
+    //   //     done();
+    //   //   });
+    //   // });
     //
-    //   it("should redirect and pass the chosen location to the next page", (done) => {
+    //   it("should render a shul submission form", (done) => {
     //
-    //     request.get(`${base}new/shul_details?city=1`, (err, res, body) => {
-    //       expect(res.statusCode).toBe(200);
-    //       expect(err).toBeNull();
-    //       expect(body).toContain("Add a Shul");
-    //       expect(body).toContain("Bergenfield");
-    //       done();
-    //     });
-    //   });
+    //   })
     // });
     describe("POST /shuls/create", () => {
       const options = {
         url: `${base}create`,
         form: {
-          cityId: 1,
-          name: "Example Shul 2",
-          nussach: "Ashkenaz",
-          childcare: 1,
-          femaleLeadership: 3,
-          kaddishGeneral: 2,
-          kaddishAlone: 4
+          cityId: '1',
+          name: 'Example Shul 2',
+          nussach: 'ashkenaz',
+          roomName_1: 'Beit Midrash',
+          size_1: '1',
+          audVisRating_1: '4',
+          sameFloorSide_1: 'true',
+          roomName_2: 'Main Shul',
+          size_2: '2',
+          audVisRating_2: '3',
+          sameFloorSide_2: 'true',
+          childcare: '1',
+          femaleLeadership: '2',
+          kaddishGeneral: '3',
+          kaddishAlone: '1'
         }
       };
 
-      it("should create a new shul and redirect", (done) => {
+      it("should create a new shul and associate rooms with it, then redirect", (done) => {
+        this.testShul;
         request.post(options, (err, res, body) => {
-          Shul.findOne({where: {name: "Example Shul 1"}})
+          Shul.findOne({where: {name: "Example Shul 2"}})
           .then((shul) => {
+            this.testShul = shul;
             expect(res.statusCode).toBe(303);
-            expect(shul.name).toBe("Example Shul 1");
+            expect(shul.name).toBe("Example Shul 2");
             expect(shul.childcare).toBe(1);
-            done();
+          })
+          .then((res) => {
+            Room.findOne({where: {
+              roomName: "Beit Midrash",
+              shulId: this.testShul.id
+            }})
+            .then((room) => {
+              // expect(res.statusCode).toBe(303);
+              expect(room).not.toBeNull();
+              expect(room.roomName).toBe("Beit Midrash");
+              expect(room.size).toBe(1);
+            })
+            .then((res) => {
+              Room.findOne({where: {
+                roomName: "Main Shul",
+                shulId: this.testShul.id
+              }})
+              .then((room) => {
+                // expect(res.statusCode).toBe(303);
+                expect(room).not.toBeNull();
+                expect(room.roomName).toBe("Main Shul");
+                expect(room.size).toBe(2);
+                done();
+              })
+              .catch((err) => {
+                console.log(err);
+                done();
+              })
+            })
+            .catch((err) => {
+              console.log(err);
+              done();
+            })
           })
           .catch((err) => {
             console.log(err);
@@ -131,12 +200,16 @@ describe("routes : shuls", () => {
       });
 
       it("should not create a new shul that fails validation", (done) => {
-        const options = {
+        const optionsBadName = {
           url: `${base}create`,
           form: {
             cityId: 1,
             name: "a",
             nussach: "b",
+            roomName_1: 'Beit Midrash',
+            size_1: '1',
+            audVisRating_1: '4',
+            sameFloorSide_1: 'true',
             childcare: 1,
             femaleLeadership: 3,
             kaddishGeneral: 2,
@@ -144,7 +217,7 @@ describe("routes : shuls", () => {
           }
         };
 
-        request.post(options, (err, res, body) => {
+        request.post(optionsBadName, (err, res, body) => {
           Shul.findOne({where: {name: "a"}})
           .then((shul) => {
             expect(shul).toBeNull();
@@ -156,6 +229,45 @@ describe("routes : shuls", () => {
           });
         });
       });
+
+      it("should not create a shul with duplicate room names", (done) => {
+        const options = {
+          url: `${base}create`,
+          form: {
+            cityId: '1',
+            name: 'Example Shul 3',
+            nussach: 'ashkenaz',
+            roomName_1: 'Beit Midrash',
+            size_1: '1',
+            audVisRating_1: '4',
+            sameFloorSide_1: 'true',
+            roomName_2: 'Main Shul',
+            size_2: '1',
+            audVisRating_2: '4',
+            sameFloorSide_2: 'true',
+            roomName_3: 'Beit Midrash',
+            size_3: '2',
+            audVisRating_3: '3',
+            sameFloorSide_3: 'true',
+            childcare: '1',
+            femaleLeadership: '2',
+            kaddishGeneral: '3',
+            kaddishAlone: '1'
+          }
+        };
+
+        request.post(options, (err, res, body) => {
+          Shul.findOne({where: {name: "Example Shul 3"}})
+          .then((shul) => {
+            expect(shul).toBeNull();
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+        });
+      })
     });
 
     describe("GET /shuls", () => {

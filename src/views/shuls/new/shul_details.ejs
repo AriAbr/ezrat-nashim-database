@@ -15,9 +15,7 @@
 
       <h1>Add a Shul</h1>
       <hr>
-
-
-      <form action="/shuls/create" method="post"  style="width: 85%">
+      <form action="/shuls/create" method="post" style="width: 85%; margin: auto">
 
         <div id="general-info-questions" style="width: 100%">
 
@@ -28,7 +26,7 @@
               <div id="location" style="width: 100%">
                 <div class="row">
                   <div class="col-lg-8">
-                    <label>City:
+                    <label><b>City selected:</b>
                       <% if(cityId === 1) { %>
                         Bergnefield, NJ, USA
                       <% } else if (cityId === 2) { %>
@@ -39,7 +37,7 @@
                   </div>
 
                   <div class="col-lg-4 col text-right">
-                    <a class="btn btn-warning btn-sm" href="/shuls/new/select_city" style="margin-left: 20px">Change City</a>
+                    <a class="btn btn-secondary btn-sm" href="/shuls/new/select_city" style="margin-left: 20px">Change City</a>
                   </div>
                 </div>
 
@@ -62,170 +60,143 @@
           </ul>
 
         </div>
-
-
-        <!-- <div id="ezrat-nashim-questions" style="width: 100%">
+        <div id="ezrat-nashim-questions" style="width: 100%">
           <h2>Women's Section(s)</h2>
           <ul class="list-group">
-            <li class="list-group-item">
-              <div class="room-1">
-
+            <li class="list-group-item list-group-item_1">
+              <div class="repeatingSection">
                 <div class="row">
                   <div class="col-lg-8">
-                    <h4>Room 1</h4>
+                    <!-- <h4 id="room-name_1">Room 1</h4> -->
                   </div>
                   <div class="col-lg-4 col text-right">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete Room</button>
+                    <a href="#" class="btn btn-secondary btn-sm deleteRoom">Delete Room</a>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-4">
-                    <div class="form-group">
-                      <label for="title">Room Name (e.g. Main Shul)</label>
-                      <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter name" style="width: 250px">
-                        <small>Room name must be at least 1 character</small>
+                    <div class="formRow form-group">
+                      <label for="roomName_1">Room Name (e.g. Main Shul)</label>
+                      <input type="text" name="roomName_1" class="form-control default-empty-value" id="roomName_1" aria-describedby="titleHelp" placeholder="Enter name" style="width: 250px" value="" />
+                        <small>Leave blank if shul only has one room</small>
                     </div>
                   </div>
                   <div class="col-lg-5">
-                    <div class="form-group">
-                      <label for="size">Women's section size (relative to men's)</label>
-                      <select class="form-control" id="size-select" style="width: 250px">
-                        <option>---Select---</option>
-                        <option>XS - Much smaller</option>
-                        <option>S - Somewhat smaller</option>
-                        <option>M - Same size</option>
-                        <option>L - Larger</option>
+                    <div class="formRow form-group">
+                      <label for="size_1">Women's section size (relative to men's)</label>
+                      <select name="size_1" class="form-control" id="size_1" style="width: 250px">
+                        <option value=0>---Select---</option>
+                        <option value=1>Much smaller (XS)</option>
+                        <option value=2>Somewhat smaller (S)</option>
+                        <option value=3>Same size (M)</option>
+                        <option value=4>Larger (L)</option>
                       </select>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="aud-vis">How easy or difficult is it to see and hear from the women's section?</label>
-                  <select class="form-control" id="aud-vis" style="width: 250px">
-                    <option>---Select---</option>
-                    <option>1 - Very difficult</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5 - Very easy</option>
+
+                <div class="formRow form-group">
+                  <label for="audVisRating_1">How easy or difficult is it to see and hear from the women's section?</label>
+                  <select name="audVisRating_1" class="form-control" id="audVisRating_1" style="width: 250px">
+                    <option value=0>---Select---</option>
+                    <option value=1>1 - Very difficult</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5 - Very easy</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label for="size">Where is the women's section? (check all that apply):</label>
-                  <table style="width:100%" class="table table-sm table-responsive-sm">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="question-text"><b>Same floor as men's section</b></div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-centered">
-                            <label class="custom-control-label" for="same-floor-centered">
-                              Centered Mechitza
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-side">
-                            <label class="custom-control-label" for="same-floor-side">
-                              Side
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="same-floor-back">
-                            <label class="custom-control-label" for="same-floor-back">
-                              Back
-                            </label>
-                          </div>
-                        </td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="question-text"><b>Slightly Elevated</b></div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="elevated-center">
-                            <label class="custom-control-label" for="elevated-center">
-                              Centered Mechitza
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="elevated-side">
-                            <label class="custom-control-label" for="elevated-side">
-                              Side
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="elevated-back">
-                            <label class="custom-control-label" for="elevated-back">
-                              Back
-                            </label>
-                          </div>
-                        </td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="question-text"><b>Balcony</b></div>
-                        </td>
-                        <td></td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="balcony-side">
-                            <label class="custom-control-label" for="balcony-side">
-                              Side
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="balcony-back">
-                            <label class="custom-control-label" for="balcony-back">
-                              Back
-                            </label>
-                          </div>
-                        </td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="question-text"><b>No women's section</b></div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" value="" id="no-womens-section">
-                            <label class="custom-control-label" for="no-womens-section">
-                              There is no women's section
-                            </label>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="formRow form-group">
+                  <label for="layout_1">Where is the women's section? (check all that apply):</label>
+
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="question-text"><b>Same floor as men's</b></div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="sameFloorCentered_1" name="sameFloorCentered_1" value=true>
+                        <label class="custom-control-label" for="sameFloorCentered_1">
+                          Centered Mechitza
+                        </label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="sameFloorSide_1" name="sameFloorSide_1" value=true>
+                        <label class="custom-control-label" for="sameFloorSide_1">
+                          Side
+                        </label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="sameFloorBack_1" name="sameFloorBack_1" value=true>
+                        <label class="custom-control-label" for="sameFloorBack_1">
+                          Back
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="question-text"><b>Slightly Elevated</b></div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="elevatedCentered_1" name="elevatedCentered_1" value=true>
+                        <label class="custom-control-label" for="elevatedCentered_1">
+                          Centered Mechitza
+                        </label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="elevatedSide_1" name="elevatedSide_1" value=true>
+                        <label class="custom-control-label" for="elevatedSide_1">
+                          Side
+                        </label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="elevatedBack_1" name="elevatedBack_1" value=true>
+                        <label class="custom-control-label" for="elevatedBack_1">
+                          Back
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="question-text"><b>Balcony</b></div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="balconySide_1" name="balconySide_1" value=true>
+                        <label class="custom-control-label" for="balconySide_1">
+                          Side
+                        </label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="balconyBack_1" name="balconyBack_1" value=true>
+                        <label class="custom-control-label" for="balconyBack_1">
+                          Back
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="question-text"><b>No women's section</b></div>
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input checkbox" type="checkbox" id="noWomenSection_1" name="noWomenSection_1" value=true>
+                        <label class="custom-control-label" for="noWomenSection_1">
+                          There is no women's section
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div class="formRowRepeatingSection">
+                <div class="row">
+                  <div class="col-lg-12 col text-right">
+                    <a href="#" class="btn btn-secondary btn-sm addRoom">Add Another Room</a>
+                  </div>
                 </div>
               </div>
             </li>
-          </ul>
 
-          <div class="row">
-            <div class="col-lg-12 col text-right">
-              <button type="submit" class="btn btn-success btn-sm" style="margin-top: 16px; margin-right: 20px">Add Room</button>
-            </div>
-          </div>
-        </div> -->
+          </ul>
+        </div>
+
+
+
 
         <div id="yes-no-questions" style="width: 100%">
           <h2>Additional Info</h2>
@@ -240,20 +211,21 @@
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-yes" value="1">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-yes" value=1>
                           <label class="custom-control-label" for="childcare-yes">Yes</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-no" value="2">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-no" value=2>
                           <label class="custom-control-label" for="childcare-no">No</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-unsure" value="3">
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-unsure" value=3>
                           <label class="custom-control-label" for="childcare-unsure">Unsure</label>
+                          <input class="custom-control-input" type="radio" name="childcare" id="childcare-default" value=3 checked hidden>
                         </div>
                       </td>
                       <td>
@@ -267,20 +239,21 @@
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-yes" value="1">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-yes" value=1>
                           <label class="custom-control-label" for="leadership-yes">Yes</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-no" value="2">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-no" value=2>
                           <label class="custom-control-label" for="leadership-no">No</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-unsure" value="3">
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-unsure" value=3>
                           <label class="custom-control-label" for="leadership-unsure">Unsure</label>
+                          <input class="custom-control-input" type="radio" name="femaleLeadership" id="leadership-default" value=3 checked hidden>
                         </div>
                       </td>
                       <td>
@@ -294,20 +267,21 @@
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-yes" value="1">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-yes" value=1>
                           <label class="custom-control-label" for="kaddish-yes">Yes</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-no" value="2">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-no" value=2>
                           <label class="custom-control-label" for="kaddish-no">No</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-unsure" value="3">
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-unsure" value=3>
                           <label class="custom-control-label" for="kaddish-unsure">Unsure</label>
+                          <input class="custom-control-input" type="radio" name="kaddishGeneral" id="kaddish-default" value=3 checked hidden>
                         </div>
                       </td>
                       <td>
@@ -321,26 +295,27 @@
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone" value="1">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone" value=1>
                           <label class="custom-control-label" for="kaddish-alone">Yes</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-with-man" value="2">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-with-man" value=2>
                           <label class="custom-control-label" for="kaddish-with-man">No</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-na" value="3">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-na" value=3>
                           <label class="custom-control-label" for="kaddish-alone-na">A man always says kaddish</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-unsure" value="4">
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-unsure" value=4>
                           <label class="custom-control-label" for="kaddish-alone-unsure">Unsure</label>
+                          <input class="custom-control-input" type="radio" name="kaddishAlone" id="kaddish-alone-default" value=4 checked hidden>
                         </div>
                       </td>
                     </tr>
@@ -352,7 +327,7 @@
 
           <div class="row">
             <div class="col-lg-12 text-center">
-              <button type="submit" class="btn btn-primary" style="margin-top: 16px; width: 250px">Submit</button>
+              <button type="submit" class="btn btn-lg btn-primary" style="margin-top: 16px; width: 250px">Submit</button>
             </div>
           </div>
         </form>
@@ -362,4 +337,49 @@
       <% include ../../static/partials/baseScripts.ejs %>
 
     </body>
+    <script type="text/javascript">
+      // Add a new repeating section
+        var attrs = ['for', 'id', 'name'];
+        function resetAttributeNames(section) {
+          var tags = section.find('input, label, select'), idx = section.index();
+          tags.each(function() {
+            var $this = $(this);
+            $.each(attrs, function(i, attr) {
+              var attr_val = $this.attr(attr);
+              if (attr_val) {
+                  $this.attr(attr, attr_val.replace(/_\d+$/, '_'+(idx + 1)))
+              }
+            })
+          })
+        }
+
+        $('.addRoom').click(function(e){
+          e.preventDefault();
+          var lastRepeatingGroup = $('.repeatingSection').last();
+          var cloned = lastRepeatingGroup.clone(true);
+          cloned.find(".default-empty-value").val("");
+          cloned.find(".checkbox").prop("checked", false);
+          cloned.insertAfter(lastRepeatingGroup);
+          resetAttributeNames(cloned);
+        });
+
+        // Delete a repeating section
+        $('.deleteRoom').click(function(e){
+          e.preventDefault();
+          var current_room = $(this).parent('div').parent('div').parent('div');
+          var other_rooms = current_room.siblings('.repeatingSection');
+          if (other_rooms.length === 0) {
+            alert("You should at least have one room");
+            return;
+          }
+          current_room.slideUp('slow', function() {
+            current_room.remove();
+
+                  // reset room indexes
+            other_rooms.each(function() {
+              resetAttributeNames($(this));
+            })
+          })
+        });
+    </script>
 </html>
