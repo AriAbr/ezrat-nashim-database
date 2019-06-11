@@ -102,31 +102,73 @@ describe("routes : shuls", () => {
       });
     });
 
-    // describe("GET /shuls/new/shul_details", () => {
-    //   // const options = {
-    //   //   url: `${base}new/select_city`,
-    //   //   form: {
-    //   //     country: "USA",
-    //   //     stateRegion: "NJ",
-    //   //     city: "1",
-    //   //   }
-    //   // };
-    //   //
-    //   // it("should redirect and pass the chosen location to the next page", (done) => {
-    //   //
-    //   //   request.get(`${base}new/shul_details?city=1`, (err, res, body) => {
-    //   //     expect(res.statusCode).toBe(200);
-    //   //     expect(err).toBeNull();
-    //   //     expect(body).toContain("Add a Shul");
-    //   //     expect(body).toContain("Bergenfield");
-    //   //     done();
-    //   //   });
-    //   // });
-    //
-    //   it("should render a shul submission form", (done) => {
-    //
-    //   })
-    // });
+    describe("GET /shuls/new/select_city", () => {
+      const options = {
+        url: `${base}new/select_city`,
+        form: {
+          country: "USA",
+          stateRegion: "NJ",
+          city: "1",
+        }
+      };
+
+      it("should render a select location form", (done) => {
+
+        request.get(`${base}new/select_city`, (err, res, body) => {
+          expect(res.statusCode).toBe(200);
+          expect(err).toBeNull();
+          expect(body).toContain("Add a Shul");
+          expect(body).toContain("Select a City:");
+          done();
+        });
+      });
+    });
+
+    describe("GET /shuls/new/shul_details", () => {
+      const options = {
+        url: `${base}new/shul_details`,
+        query: `city=1`,
+        referer: "select_city"
+      };
+
+      it("should render a shul submission form", (done) => {
+        request.get(`${base}new/select_city`, (err, res, body) => {
+          expect(res.statusCode).toBe(200);
+          expect(err).toBeNull();
+          expect(body).toContain("Add a Shul");
+          expect(body).toContain("Bergenfield");
+          done();
+        });
+      });
+
+      it("should redirect if no city is selected", (done) => {
+        const options = {
+          url: `${base}new/shul_details`,
+          referer: "select_city"
+        };
+        request.get(`${base}new/select_city`, (err, res, body) => {
+          expect(res.statusCode).toBe(200);
+          expect(err).toBeNull();
+          expect(body).toContain("Add a Shul");
+          expect(body).toContain("Select a City:");
+          done();
+        });
+      });
+      
+      it("should redirect if the referer is not select_city", (done) => {
+        const options = {
+          url: `${base}new/shul_details`,
+          query: `city=1`,
+        };
+        request.get(`${base}new/select_city`, (err, res, body) => {
+          expect(res.statusCode).toBe(200);
+          expect(err).toBeNull();
+          expect(body).toContain("Add a Shul");
+          expect(body).toContain("Select a City:");
+          done();
+        });
+      });
+    });
     describe("POST /shuls/create", () => {
       const options = {
         url: `${base}create`,
