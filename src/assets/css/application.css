@@ -35,7 +35,7 @@ body{
 .btn-outline-primary:hover{
   background-color: #273b73;
   border-color: #273b73;
-  color: #d8ebff;
+  color: #effdff;
 }
 .btn-primary{
   background-color: #273b7b;
@@ -45,33 +45,6 @@ li hr{
   color: #333dce;
   background-color: #333dce;
 }
-/* .btn-primary{
-  background-color: #b6f3e8;
-  color: #323232;
-  border-color: #273b7b;
-  border-width: 0px;
-}
-.btn-primary:hover{
-  color: #b6f3e8;
-  border-color: #273b7b;
-  background-color: #323232;
-}
-.btn-primary.btn-lg:focus:active{
-  background-color: #323232;
-  color: #b6f3e8;
-}
-.btn-primary.btn-lg:active{
-  color: #b6f3e8;
-}
-.btn-primary.btn-lg.active:focus{
-  box-shadow: 0 0 0 0.2rem #273b7b;
-  color: #b6f3e8;
-}
-.btn-primary.btn-lg:not(:hover){
-  box-shadow: 0 0 0 0rem #273b7b;
-  background-color: #b6f3e8;
-  color: #323232;
-} */
 .navbar{
   background-color: #323232;
 }
@@ -119,9 +92,12 @@ li hr{
 .vert-horiz-center{
 
 }
+.table{
+  border-radius: 3px;
+}
 .table-bordered td {
-  background-color: #ddfcff;
-  border-color: #cce4ff;
+  background-color: #effdff;
+  border-color: #cce0e2;
 }
 
 .table-bordered th {
@@ -131,10 +107,19 @@ li hr{
 }
 .table-secondary td{
   background-color: #bcdcff;
-  border-color: #bacdff
+  border-color: #bacdff;
 }
 .table .thead-dark th{
   background-color: #273b73;
   border-color: #3a5399;
   color: #d8ebff;
+}
+.size-tag{
+  background-color: #d8ebff;
+  width: 100%;
+  height: 20px;
+  border-radius: .2rem;
+}
+.table-sm td{
+  padding-bottom: 0;
 }
