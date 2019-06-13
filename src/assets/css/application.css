@@ -95,19 +95,22 @@ li hr{
 .table{
   border-radius: 3px;
 }
+.table-sm td{
+  padding-bottom: 0;
+}
 .table-bordered td {
   background-color: #effdff;
-  border-color: #cce0e2;
+  border-color: #dce9ea;
 }
 
 .table-bordered th {
   background-color: #d8ebff;
   border-color: #cce4ff;
-
 }
 .table-secondary td{
   background-color: #bcdcff;
   border-color: #bacdff;
+  padding-bottom: .3rem;
 }
 .table .thead-dark th{
   background-color: #273b73;
@@ -119,7 +122,4 @@ li hr{
   width: 100%;
   height: 20px;
   border-radius: .2rem;
-}
-.table-sm td{
-  padding-bottom: 0;
 }
